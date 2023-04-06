@@ -4,17 +4,6 @@
 
 locals {
   region           = "us-west-2"
-  cluster_version  = "1.24"
-  hub_cluster_name = "kubecon"
-  existing_eks_managed_node_groups = {
-    initial = {
-      instance_types = ["t3.small"]
-
-      min_size     = 1
-      max_size     = 1
-      desired_size = 1
-    }
-  }
 }
 
 module "spoke_cluster_1" {
@@ -23,30 +12,8 @@ module "spoke_cluster_1" {
   spoke_cluster_name = "cluster-${local.region}-1"
 
   region                                  = local.region
-  create_vpc                              = local.create_vpc
-  existing_vpc_id                         = local.existing_vpc_id
-  existing_vpc_private_subnets            = local.existing_vpc_private_subnets
-  hub_cluster_name                        = local.hub_cluster_name
-  cluster_version                         = local.cluster_version
-  enable_existing_eks_managed_node_groups = local.enable_existing_eks_managed_node_groups
-  existing_eks_managed_node_groups        = local.existing_eks_managed_node_groups
-  cluster_addons                          = local.cluster_addons
-  addons                                  = local.addons
-  enable_workloads                        = true
-  enable_team_workloads                   = local.enable_team_workloads
-
-  workloads = {
-    "cluster-${local.region}-1-workload" = {
-      add_on_application = false
-      path               = "helm-guestbook"
-      repo_url           = "https://github.com/argoproj/argocd-example-apps.git"
-      target_revision    = "master"
-      project            = "cluster-${local.region}-1"
-      destination        = module.spoke_cluster_1.cluster_endpoint
-      namespace          = "single-workload"
-    }
-  }
-
+  existing_vpc_id                         = module.vpc.vpc_id
+  existing_vpc_private_subnets            = module.vpc.private_subnets
 }
 
 module "spoke_cluster_2" {
@@ -55,17 +22,8 @@ module "spoke_cluster_2" {
   spoke_cluster_name = "cluster-${local.region}-2"
 
   region                                  = local.region
-  create_vpc                              = local.create_vpc
-  existing_vpc_id                         = local.existing_vpc_id
-  existing_vpc_private_subnets            = local.existing_vpc_private_subnets
-  hub_cluster_name                        = local.hub_cluster_name
-  cluster_version                         = local.cluster_version
-  enable_existing_eks_managed_node_groups = local.enable_existing_eks_managed_node_groups
-  existing_eks_managed_node_groups        = local.existing_eks_managed_node_groups
-  cluster_addons                          = local.cluster_addons
-  addons                                  = local.addons
-  enable_workloads                        = local.enable_workloads
-  enable_team_workloads                   = local.enable_team_workloads
+  existing_vpc_id                         = module.vpc.vpc_id
+  existing_vpc_private_subnets            = module.vpc.private_subnets
 }
 
 module "spoke_cluster_10" {
@@ -74,22 +32,13 @@ module "spoke_cluster_10" {
   spoke_cluster_name = "cluster-${local.region}-10"
 
   region                                  = local.region
-  create_vpc                              = local.create_vpc
-  existing_vpc_id                         = local.existing_vpc_id
-  existing_vpc_private_subnets            = local.existing_vpc_private_subnets
-  hub_cluster_name                        = local.hub_cluster_name
-  cluster_version                         = local.cluster_version
-  enable_existing_eks_managed_node_groups = local.enable_existing_eks_managed_node_groups
-  existing_eks_managed_node_groups        = local.existing_eks_managed_node_groups
-  cluster_addons                          = local.cluster_addons
-  addons                                  = local.addons
-  enable_workloads                        = local.enable_workloads
-  enable_team_workloads                   = local.enable_team_workloads
+  existing_vpc_id                         = module.vpc.vpc_id
+  existing_vpc_private_subnets            = module.vpc.private_subnets
 }
 
 
 ################################################################################
-# Common
+# Supporting Resources
 ################################################################################
 
 provider "aws" {
@@ -102,40 +51,12 @@ locals {
   name                                    = "kubecon-spoke"
   vpc_cidr                                = "10.0.0.0/16"
   azs                                     = slice(data.aws_availability_zones.available.names, 0, 3)
-  create_vpc                              = false
-  existing_vpc_id                         = module.vpc.vpc_id
-  existing_vpc_private_subnets            = module.vpc.private_subnets
-  enable_existing_eks_managed_node_groups = true
-  addons = {
-    enable_metrics_server = true
-  }
-  cluster_addons = {
-    coredns = {
-      most_recent = true
-    }
-    kube-proxy = {
-      most_recent = true
-    }
-    vpc-cni = {
-      most_recent = true
-    }
-  }
-  enable_workloads      = false
-  enable_team_workloads = false
 
   tags = {
     Blueprint  = local.name
     GithubRepo = "github.com/csantanapr/argocd-scaling-example"
   }
 }
-
-
-
-
-
-################################################################################
-# Supporting Resources
-################################################################################
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"

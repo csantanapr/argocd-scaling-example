@@ -1,7 +1,7 @@
 variable "hub_cluster_name" {
   description = "Hub Cluster Name"
   type        = string
-  default     = "hub-cluster"
+  default     = "kubecon"
 }
 variable "spoke_cluster_name" {
   description = "Spoke Cluster Name"
@@ -16,7 +16,9 @@ variable "environment" {
 variable "addons" {
   description = "Spoke Cluster Environment"
   type        = any
-  default     = {}
+  default     = {
+    enable_metrics_server = true
+  }
 }
 # Multi-account Multi-region support
 variable "region" {
@@ -34,7 +36,7 @@ variable "hub_region" {
 variable "cluster_version" {
   description = "Cluster Version"
   type        = string
-  default     = "1.24"
+  default     = "1.25"
 }
 
 variable "workloads" {
@@ -43,11 +45,71 @@ variable "workloads" {
   default     = null
 }
 
-variable create_vpc {}
-variable existing_vpc_id {}
-variable existing_vpc_private_subnets {}
-variable enable_existing_eks_managed_node_groups {}
-variable existing_eks_managed_node_groups {}
-variable enable_workloads {}
-variable enable_team_workloads {}
-variable cluster_addons {}
+variable "create_vpc" {
+  description = "Create new VPC per cluster"
+  type        = bool
+  default     = false
+}
+
+variable "enable_existing_eks_managed_node_groups" {
+  description = "Override managed groups"
+  type        = bool
+  default     = true
+}
+
+variable "cluster_addons" {
+  description = "Managed Addons"
+  type        = any
+  default     = {
+    coredns = {
+      most_recent = true
+    }
+    kube-proxy = {
+      most_recent = true
+    }
+    vpc-cni = {
+      most_recent = true
+    }
+  }
+}
+
+variable "enable_workloads" {
+  description = "Deploy sample workloads from EKS Blueprints"
+  type        = bool
+  default     = false
+}
+
+variable "existing_vpc_id" {
+  description = "Existing VPC id"
+  type        = string
+  default     = ""
+}
+
+variable "existing_vpc_private_subnets" {
+  description = "Private subnet ids"
+  type        = list(string)
+  default     = []
+}
+
+variable "enable_team_workloads" {
+  description = "Deploy teams namespaces"
+  type        = bool
+  default     = false
+}
+
+variable "existing_eks_managed_node_groups" {
+  description = "Managed Node Group"
+  type        = any
+  default     = {
+    initial = {
+      instance_types = ["t3.small"]
+
+      min_size     = 1
+      max_size     = 1
+      desired_size = 1
+    }
+  }
+}
+
+
+

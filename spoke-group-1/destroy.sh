@@ -1,10 +1,10 @@
 #!/bin/bash
 
-set -xe
+set -x
 
 CLUSTERS=3
 COUNTER=0
-for CLUSTER in $(seq 3)
+for CLUSTER in $(seq $CLUSTERS)
 do
     let COUNTER++
     echo "Destroying Clustert ${CLUSTER}"

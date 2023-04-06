@@ -162,8 +162,8 @@ module "eks" {
     }
   })
 
-  vpc_id     = try(var.existing_vpc_id, module.vpc.vpc_id)
-  subnet_ids = try(var.existing_vpc_private_subnets, module.vpc.private_subnets)
+  vpc_id     = var.create_vpc ? module.vpc.vpc_id : var.existing_vpc_id
+  subnet_ids = var.create_vpc ? module.vpc.private_subnets : var.existing_vpc_private_subnets
 
 
   # Team Access
