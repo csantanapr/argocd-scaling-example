@@ -93,36 +93,20 @@ You can edit the file [spoke-cluster-template/main.tf](./spoke-cluster-template/
 
 (Optional) Each spoke cluster deploys a different set of Cluster addons and applications. See the `main.tf` for each spoke cluster to review the configuration.
 
-(Optional) You have the option to create clusters in different accounts or regions than the hub cluster,
-inspect the `main.tf` to pass the optional parameters.
-```hcl
-spoke_profile = "account-spoke-Admin"
-region        = "us-east-1"
-hub_profile   = "account-hub-Admin"
-hub_region    = "us-west-2"
-```
 
 The Spoke clusters can be deployed in parallel.
 
-## Deploy Spoke Cluster 1 "DEV"
+## Deploy Spoke Cluster 1 group (us-west-2) Oregon
 ```shell
-cd spoke-cluster-1-dev
+cd spoke-group-1
 terraform init
 terraform apply -auto-approve
 cd ..
 ```
 
-## Deploy Spoke Cluster 2 "TEST"
+## Deploy Spoke Cluster 2 group (eu-west-2) London
 ```shell
-cd spoke-cluster-2-test
-terraform init
-terraform apply -auto-approve
-cd ..
-```
-
-## Deploy Spoke Cluster 3 "PROD"
-```shell
-cd spoke-cluster-2-prod
+cd spoke-group-2
 terraform init
 terraform apply -auto-approve
 cd ..
@@ -219,23 +203,17 @@ git_secret_name      = "${local.name}-addons"
 
 ## Destroy
 
-### Destroy Spoke Cluster 1 "DEV"
+
+### Destroy Spoke Cluster 1 group (us-west-2) Oregon
 ```shell
-cd spoke-cluster-1-dev
+cd spoke-group-1
 ./destroy.sh
 cd ..
 ```
 
-### Destroy Spoke Cluster 2 "TEST"
+### Destroy Spoke Cluster 2 group (eu-west-2) London
 ```shell
-cd spoke-cluster-2-test
-./destroy.sh
-cd ..
-```
-
-### Destroy Spoke Cluster 3 "PROD"
-```shell
-cd spoke-cluster-2-prod
+cd spoke-group-2
 ./destroy.sh
 cd ..
 ```
