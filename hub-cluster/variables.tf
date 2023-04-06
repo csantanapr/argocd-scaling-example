@@ -64,3 +64,25 @@ variable "enable_ingress" {
   type        = bool
   default     = false
 }
+
+
+variable "workloads" {
+  description = "Workloads"
+  type        = any
+  default     = {
+    # This shows how to deploy an application to leverage cluster generator  https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Cluster/
+    application-set = {
+      add_on_application = false
+      path               = "apps/application-sets"
+      repo_url           = "https://github.com/csantanapr/argocd-scaling-example.git"
+    }
+
+  }
+}
+
+variable "enable_workloads" {
+  description = "Enable Workloads with Application Sets"
+  type        = bool
+  default     = true
+}
+

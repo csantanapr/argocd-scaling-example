@@ -405,7 +405,7 @@ module "eks_blueprints_argocd_workloads" {
     namespace = local.name # Use cluster name as namespace for ArgoCD Apps
   }
 
-  applications = {
+  applications = try(var.workloads,{
     # This shows how to deploy a multiple workloads using ArgoCD App of Apps pattern
     "${var.environment}-workloads" = {
       add_on_application = false
@@ -448,7 +448,7 @@ module "eks_blueprints_argocd_workloads" {
       namespace          = "single-workload"
     }
 
-  }
+  })
 
 
   addon_context = {

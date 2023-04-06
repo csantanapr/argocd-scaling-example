@@ -243,18 +243,19 @@ module "eks_blueprints_argocd_addons" {
 ################################################################################
 # EKS Workloads via ArgoCD
 ################################################################################
-/*
+
 module "eks_blueprints_argocd_workloads" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints-addons//modules/argocd?ref=3e64d809ac9dbc89aee872fe0f366f0b757d3137" # TODO: Last update to hash 04=3/31/2023
 
-  argocd_skip_install = true # Skip argocd controller install
+  count = try(var.enable_workloads,true) ? 1 : 0
 
+  argocd_skip_install = true # Skip argocd controller install
   helm_config = {
     namespace        = local.argocd_namespace
     create_namespace = false
   }
 
-  applications = {
+  applications = try(var.workloads,{
     # This shows how to deploy an application to leverage cluster generator  https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Cluster/
     application-set = {
       add_on_application = false
@@ -267,7 +268,7 @@ module "eks_blueprints_argocd_workloads" {
       #git_secret_name      = "${local.name}-workloads"
     }
 
-  }
+  })
 
   addon_context = {
     aws_region_name                = var.region
@@ -275,10 +276,12 @@ module "eks_blueprints_argocd_workloads" {
     eks_cluster_id                 = module.eks.cluster_name
   }
 
+  # The addons need to be present by the time the workloads are deployed
+  # On destroy the workloads need to be remove before the addons
   depends_on = [module.eks_blueprints_argocd_addons]
 
 }
-*/
+
 
 ################################################################################
 # ArgoCD EKS Access

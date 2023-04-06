@@ -1,11 +1,10 @@
-
-#---------------------------------------------------------------
-# Spoke Clusters
-#---------------------------------------------------------------
+################################################################################
+# Spoke Clusters Group 2
+################################################################################
 
 locals {
   region           = "eu-west-2"
-  cluster_version  = "1.24"
+  cluster_version  = "1.25"
   hub_cluster_name = "kubecon"
   existing_eks_managed_node_groups = {
     initial = {
@@ -33,8 +32,21 @@ module "spoke_cluster_1" {
   existing_eks_managed_node_groups        = local.existing_eks_managed_node_groups
   cluster_addons                          = local.cluster_addons
   addons                                  = local.addons
-  enable_workloads                        = local.enable_workloads
+  enable_workloads                        = true
   enable_team_workloads                   = local.enable_team_workloads
+
+  workloads = {
+    "cluster-${local.region}-1-workload" = {
+      add_on_application = false
+      path               = "helm-guestbook"
+      repo_url           = "https://github.com/argoproj/argocd-example-apps.git"
+      target_revision    = "master"
+      project            = "cluster-${local.region}-1"
+      destination        = module.spoke_cluster_1.cluster_endpoint
+      namespace          = "single-workload"
+    }
+  }
+
 }
 
 module "spoke_cluster_2" {
@@ -109,6 +121,9 @@ locals {
     }
   }
   enable_workloads      = false
+
+
+
   enable_team_workloads = false
 
   tags = {

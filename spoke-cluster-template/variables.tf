@@ -37,6 +37,12 @@ variable "cluster_version" {
   default     = "1.24"
 }
 
+variable "workloads" {
+  description = "Workloads"
+  type        = any
+  default     = null
+}
+
 variable create_vpc {}
 variable existing_vpc_id {}
 variable existing_vpc_private_subnets {}
