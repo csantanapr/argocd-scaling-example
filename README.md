@@ -51,25 +51,25 @@ You will be able to use ArgoCD with a valid SSL certificate on a domain (i.e. ar
 You can use a registered domain you control or register a new one following the instructions [here](https://aws.amazon.com/getting-started/hands-on/get-a-domain/).
 
 To enable this option, use:
-```sh
+```shell
 export TF_VAR_enable_ingress=true
 ```
 
 **Create DNS Hosted Zone in Route 53:**
 
 In this step you will delegate your registered domain DNS to Amazon Route53. You can either delegate the top level domain or a subdomain.
-```
+```shell
 export TF_VAR_domain_name=<my-registered-domain> # For example: example.com or subdomain.example.com
 ```
 You can use the Console, or the `aws` cli to create a hosted zone. Execute the following command only once:
-```sh
+```shell
 aws route53 create-hosted-zone --name $TF_VAR_domain_name --caller-reference "$(date)"
 ```
 Use the NameServers in the DelegatoinSet to update your registered domain NS records at the registrar.
 
 ## Deploy Hub Cluster
 After selecting LoadBalancer or Ingress for ArgoCD, deploy the Hub Cluster
-```sh
+```shell
 cd hub-cluster
 terraform init
 terraform apply -auto-approve
@@ -78,7 +78,7 @@ cd ..
 
 ## Configure kubectl for Hub Cluster
 Login with kubectl to Hub Cluster
-```sh
+```shell
 terraform -chdir=hub-cluster output -raw configure_kubectl
 ```
 Expected output, run the `aws eks update-kubeconfig` command
@@ -97,7 +97,7 @@ You can edit the file [spoke-cluster-template/main.tf](./spoke-cluster-template/
 inspect the `main.tf` to pass the optional parameters.
 ```hcl
 spoke_profile = "account-spoke-Admin"
-spoke_region  = "us-east-1"
+region        = "us-east-1"
 hub_profile   = "account-hub-Admin"
 hub_region    = "us-west-2"
 ```
@@ -105,7 +105,7 @@ hub_region    = "us-west-2"
 The Spoke clusters can be deployed in parallel.
 
 ## Deploy Spoke Cluster 1 "DEV"
-```sh
+```shell
 cd spoke-cluster-1-dev
 terraform init
 terraform apply -auto-approve
@@ -113,7 +113,7 @@ cd ..
 ```
 
 ## Deploy Spoke Cluster 2 "TEST"
-```sh
+```shell
 cd spoke-cluster-2-test
 terraform init
 terraform apply -auto-approve
@@ -121,7 +121,7 @@ cd ..
 ```
 
 ## Deploy Spoke Cluster 3 "PROD"
-```sh
+```shell
 cd spoke-cluster-2-prod
 terraform init
 terraform apply -auto-approve
@@ -132,13 +132,13 @@ cd ..
 
 ### Access ArgoCD
 Get the ArgoCD URL and Password if using Ingress
-```sh
+```shell
 echo "URL: https://$(kubectl get ing -n argocd argo-cd-argocd-server -o jsonpath='{.spec.tls[0].hosts[0]}')"
 echo "Username: admin"
 echo "Password: $(kubectl get secrets argocd-initial-admin-secret -n argocd --template="{{index .data.password | base64decode}}")"
 ```
 Get the ArgoCD URL and Password if using LoadBalancer and not Ingress
-```sh
+```shell
 echo "URL: https://$(kubectl get svc -n argocd argo-cd-argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
 echo "Username: admin"
 echo "Password: $(kubectl get secrets argocd-initial-admin-secret -n argocd --template="{{index .data.password | base64decode}}")"
@@ -166,20 +166,20 @@ Download the latest Argo CD version from https://github.com/argoproj/argo-cd/rel
 Log in using `argocd login` using the hostname, username, and password
 
 If using Ingress with a Route 53 domain name use the following to get the CLI login command:
-```sh
+```shell
 echo "argocd login $(kubectl get ing -n argocd argo-cd-argocd-server -o jsonpath='{.spec.tls[0].hosts[0]}')"
 ```
 If using LoadBalancer use the following to get the CLI login command:
-```sh
+```shell
 echo "argocd login $(kubectl get svc -n argocd argo-cd-argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
 ```
 
 List the spoke clusters
-```sh
+```shell
 argocd cluster list
 ```
 You can list based on cluster labels using `kubectl`
-```sh
+```shell
 kubectl get secrets -n argocd -l environment=dev,argocd.argoproj.io/secret-type=cluster
 ```
 
@@ -188,7 +188,7 @@ You can view the ArgoCD metrics using Grafana.
 
 You need to to set to `true` the variable `var.enable_ingress` and set the value for `var.domain_name`
 To login into AMG use the the url, username and password using the following command:
-```sh
+```shell
 terraform -chdir=hub-cluster output -raw grafana_url
 terraform -chdir=hub-cluster output -raw grafana_admin_username
 terraform -chdir=hub-cluster output -raw grafana_admin_password_cmd
@@ -220,34 +220,34 @@ git_secret_name      = "${local.name}-addons"
 ## Destroy
 
 ### Destroy Spoke Cluster 1 "DEV"
-```sh
+```shell
 cd spoke-cluster-1-dev
 ./destroy.sh
 cd ..
 ```
 
 ### Destroy Spoke Cluster 2 "TEST"
-```sh
+```shell
 cd spoke-cluster-2-test
 ./destroy.sh
 cd ..
 ```
 
 ### Destroy Spoke Cluster 3 "PROD"
-```sh
+```shell
 cd spoke-cluster-2-prod
 ./destroy.sh
 cd ..
 ```
 
 ### Destroy Hub Cluster
-```sh
+```shell
 cd hub-cluster
 ./destroy.sh
 cd ..
 ```
 >The above `./destroy.sh` command deletes the Ingress before uninstalling the argocd server, the Ingress depends on the aws-loadbalancer-controller addon being deployed via gitops using argocd application. The following command runs before any `terraform destroy runs` in the `destroy.sh` script.
-```sh
+```shell
 kubectl delete ing argo-cd-argocd-server -n argocd
 ```
 
@@ -314,7 +314,7 @@ Collect the following information from Amazon Cognito User Pool:
 * your ArgoCD CLI app client ID. For example, `5oq67qgtjmpc2sqjjn88puj477`
 
 Set the following Terraform Variables, for example
-```sh
+```shell
 export TF_VAR_enable_ingress=true
 export TF_VAR_domain_name="example.com" # See instructions above to configure Route 53 hosted zone
 export TF_VAR_argocd_enable_sso=true
@@ -326,7 +326,7 @@ export TF_VAR_argocd_sso_cli_client_id="5oq67qgtjmpc2sqjjn88puj477"
 ```
 
 Deploy the Hub Cluster after setting the Terraform environment variables:
-```sh
+```shell
 cd hub-cluster
 terraform init
 terraform apply -auto-approve

@@ -1,6 +1,5 @@
 provider "aws" {
   region  = var.region
-  profile = var.hub_profile
 }
 
 provider "kubernetes" {
@@ -8,7 +7,7 @@ provider "kubernetes" {
   cluster_ca_certificate = try(base64decode(module.eks.cluster_certificate_authority_data), "")
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", local.name, "--region", var.region, "--profile", var.hub_profile]
+    args        = ["eks", "get-token", "--cluster-name", local.name, "--region", var.region]
     command     = "aws"
   }
 }
@@ -19,7 +18,7 @@ provider "helm" {
     cluster_ca_certificate = try(base64decode(module.eks.cluster_certificate_authority_data), "")
     exec {
       api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", local.name, "--region", var.region, "--profile", var.hub_profile]
+      args        = ["eks", "get-token", "--cluster-name", local.name, "--region", var.region]
       command     = "aws"
     }
   }
@@ -30,7 +29,7 @@ provider "kubectl" {
   cluster_ca_certificate = try(base64decode(module.eks.cluster_certificate_authority_data), "")
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", local.name, "--region", var.region, "--profile", var.hub_profile]
+    args        = ["eks", "get-token", "--cluster-name", local.name, "--region", var.region]
     command     = "aws"
   }
   load_config_file  = false
@@ -244,7 +243,7 @@ module "eks_blueprints_argocd_addons" {
 ################################################################################
 # EKS Workloads via ArgoCD
 ################################################################################
-
+/*
 module "eks_blueprints_argocd_workloads" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints-addons//modules/argocd?ref=3e64d809ac9dbc89aee872fe0f366f0b757d3137" # TODO: Last update to hash 04=3/31/2023
 
@@ -279,6 +278,7 @@ module "eks_blueprints_argocd_workloads" {
   depends_on = [module.eks_blueprints_argocd_addons]
 
 }
+*/
 
 ################################################################################
 # ArgoCD EKS Access

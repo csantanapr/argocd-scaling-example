@@ -24,18 +24,16 @@ variable "region" {
   type        = string
   default     = "us-west-2"
 }
-variable "spoke_profile" {
-  description = "Spoke Cluster CLI Profile"
-  type        = string
-  default     = "default"
-}
+
 variable "hub_region" {
   description = "Hub Cluster Region"
   type        = string
   default     = "us-west-2"
 }
-variable "hub_profile" {
-  description = "Hub Cluster CLI Profile"
-  type        = string
-  default     = "default"
-}
+
+
+variable create_vpc {}
+variable existing_vpc_id {}
+variable existing_vpc_private_subnets {}
+variable enable_existing_eks_managed_node_groups {}
+variable existing_eks_managed_node_groups {}

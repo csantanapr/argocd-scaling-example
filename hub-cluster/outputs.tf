@@ -1,6 +1,6 @@
 output "configure_kubectl" {
   description = "Configure kubectl: make sure you're logged in with the correct AWS profile and run the following command to update your kubeconfig"
-  value       = "aws eks update-kubeconfig --name ${module.eks.cluster_name} --region ${var.region} --profile ${var.hub_profile}"
+  value       = "aws eks update-kubeconfig --name ${module.eks.cluster_name} --region ${var.region}"
 }
 
 output "argocd_login" {
@@ -13,6 +13,10 @@ output "argocd_url" {
   value       = var.enable_ingress ? "https://${local.argocd_subdomain}.${var.domain_name}" : "echo \"https://$(kubectl get svc -n argocd argo-cd-argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')\""
 }
 
+output "argocd_admin_password_cmd" {
+  description = "Command to get initial argocd admin password"
+  value = "echo Password: $(kubectl get secrets argocd-initial-admin-secret -n argocd --template='{{index .data.password | base64decode}}')"
+}
 output "grafana_url" {
   description = "AWS Managed Grafana Workspace  URL"
   value       = var.enable_ingress ? "https://${module.managed_grafana.workspace_endpoint}" : ""

@@ -1,3 +1,15 @@
+variable "hub_cluster_name" {
+  description = "Hub Cluster Name"
+  type        = string
+  default     = "hub-cluster"
+}
+
+variable "region" {
+  description = "Hub Cluster Region"
+  type        = string
+  default     = "us-west-2"
+}
+
 variable "domain_private_zone" {
   description = "Is ArgoCD private zone"
   type        = bool
@@ -51,22 +63,4 @@ variable "enable_ingress" {
   description = "Enable ingress"
   type        = bool
   default     = false
-}
-
-variable "hub_cluster_name" {
-  description = "Hub Cluster Name"
-  type        = string
-  default     = "hub-cluster"
-}
-
-variable "hub_profile" {
-  description = "Hub Cluster CLI Profile"
-  type        = string
-  default     = "default"
-}
-
-variable "region" {
-  description = "Hub Cluster Region"
-  type        = string
-  default     = "us-west-2"
 }
