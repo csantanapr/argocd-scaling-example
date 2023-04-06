@@ -4,9 +4,9 @@
 #---------------------------------------------------------------
 
 locals {
-  region                                  = "us-west-2"
-  cluster_version                         = "1.24"
-  hub_cluster_name                        = "kubecon"
+  region           = "us-west-2"
+  cluster_version  = "1.24"
+  hub_cluster_name = "kubecon"
   existing_eks_managed_node_groups = {
     initial = {
       instance_types = ["t3.small"]
@@ -21,7 +21,7 @@ locals {
 module "spoke_cluster_1" {
   source = "../spoke-cluster-template"
 
-  spoke_cluster_name = "cluster-us-west-2-1"
+  spoke_cluster_name = "cluster-${local.region}-1"
 
   region                                  = local.region
   create_vpc                              = local.create_vpc
@@ -40,7 +40,7 @@ module "spoke_cluster_1" {
 module "spoke_cluster_2" {
   source = "../spoke-cluster-template"
 
-  spoke_cluster_name = "cluster-us-west-2-2"
+  spoke_cluster_name = "cluster-${local.region}-2"
 
   region                                  = local.region
   create_vpc                              = local.create_vpc
@@ -59,7 +59,7 @@ module "spoke_cluster_2" {
 module "spoke_cluster_10" {
   source = "../spoke-cluster-template"
 
-  spoke_cluster_name = "cluster-us-west-2-10"
+  spoke_cluster_name = "cluster-${local.region}-10"
 
   region                                  = local.region
   create_vpc                              = local.create_vpc
