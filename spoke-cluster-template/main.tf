@@ -1,11 +1,11 @@
 provider "aws" {
-  region  = var.region
+  region = var.region
 }
 
 # Modify based in which account the hub cluster is located
 provider "aws" {
-  region  = var.hub_region
-  alias   = "hub"
+  region = var.hub_region
+  alias  = "hub"
 }
 
 provider "kubernetes" {
@@ -98,8 +98,6 @@ resource "aws_iam_role" "spoke_role" {
 locals {
   name = var.spoke_cluster_name
 
-  cluster_version = try(var.cluster_version,"1.24")
-
   instance_type = "m5.large"
 
   vpc_cidr = "10.0.0.0/16"
@@ -143,10 +141,10 @@ module "eks" {
   version = "~> 19.10"
 
   cluster_name                   = local.name
-  cluster_version                = local.cluster_version
+  cluster_version                = var.cluster_version
   cluster_endpoint_public_access = true
 
-  cluster_addons = try(var.cluster_addons,{
+  cluster_addons = try(var.cluster_addons, {
     aws-ebs-csi-driver = {
       service_account_role_arn = module.ebs_csi_driver_irsa.iam_role_arn
       most_recent              = true
@@ -398,14 +396,14 @@ module "eks_blueprints_argocd_workloads" {
     helm       = helm.hub
     kubernetes = kubernetes.hub
   }
-  count = try(var.enable_workloads,true) ? 1 : 0
+  count = try(var.enable_workloads, true) ? 1 : 0
 
   argocd_skip_install = true # Indicates this is a remote cluster for ArgoCD
   helm_config = {
     namespace = local.name # Use cluster name as namespace for ArgoCD Apps
   }
 
-  applications = try(var.workloads,{
+  applications = try(var.workloads, {
     # This shows how to deploy a multiple workloads using ArgoCD App of Apps pattern
     "${var.environment}-workloads" = {
       add_on_application = false
@@ -554,7 +552,7 @@ module "eks_blueprints_argocd_team_workloads" {
     helm       = helm.hub
     kubernetes = kubernetes.hub
   }
-  count = try(var.enable_team_workloads,true) ? 1 : 0
+  count = try(var.enable_team_workloads, true) ? 1 : 0
 
   argocd_skip_install = true # Indicates this is a remote cluster for ArgoCD
   helm_config = {
@@ -640,8 +638,8 @@ module "eks_blueprints_argocd_team_workloads" {
 
 module "vpc" {
   create_vpc = try(var.create_vpc, true)
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 3.0"
+  source     = "terraform-aws-modules/vpc/aws"
+  version    = "~> 3.0"
 
   name = local.name
   cidr = local.vpc_cidr

@@ -10,6 +10,12 @@ variable "region" {
   default     = "us-west-2"
 }
 
+variable "cluster_version" {
+  description = "Cluster Version"
+  type        = string
+  default     = "1.25"
+}
+
 variable "domain_private_zone" {
   description = "Is ArgoCD private zone"
   type        = bool
@@ -69,7 +75,7 @@ variable "enable_ingress" {
 variable "workloads" {
   description = "Workloads"
   type        = any
-  default     = {
+  default = {
     # This shows how to deploy an application to leverage cluster generator  https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Cluster/
     application-set = {
       add_on_application = false
@@ -85,4 +91,3 @@ variable "enable_workloads" {
   type        = bool
   default     = true
 }
-

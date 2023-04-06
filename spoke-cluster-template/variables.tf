@@ -1,42 +1,45 @@
-variable "hub_cluster_name" {
-  description = "Hub Cluster Name"
-  type        = string
-  default     = "kubecon"
-}
-variable "spoke_cluster_name" {
-  description = "Spoke Cluster Name"
-  type        = string
-  default     = "cluster-n"
-}
-variable "environment" {
-  description = "Spoke Cluster Environment"
-  type        = string
-  default     = "dev"
-}
-variable "addons" {
-  description = "Spoke Cluster Environment"
-  type        = any
-  default     = {
-    enable_metrics_server = true
-  }
-}
-# Multi-account Multi-region support
-variable "region" {
-  description = "Spoke Cluster Region"
-  type        = string
-  default     = "us-west-2"
-}
-
 variable "hub_region" {
   description = "Hub Cluster Region"
   type        = string
   default     = "us-west-2"
 }
 
+variable "hub_cluster_name" {
+  description = "Hub Cluster Name"
+  type        = string
+  default     = "kubecon"
+}
+
+variable "region" {
+  description = "Spoke Cluster Region"
+  type        = string
+  default     = "us-west-2"
+}
+
+variable "spoke_cluster_name" {
+  description = "Spoke Cluster Name, name it prefix cluster-*"
+  type        = string
+  default     = ""
+}
+
 variable "cluster_version" {
   description = "Cluster Version"
   type        = string
   default     = "1.25"
+}
+
+variable "environment" {
+  description = "Spoke Cluster Environment"
+  type        = string
+  default     = "dev"
+}
+
+variable "addons" {
+  description = "Spoke Cluster Environment"
+  type        = any
+  default = {
+    enable_metrics_server = true
+  }
 }
 
 variable "workloads" {
@@ -60,7 +63,7 @@ variable "enable_existing_eks_managed_node_groups" {
 variable "cluster_addons" {
   description = "Managed Addons"
   type        = any
-  default     = {
+  default = {
     coredns = {
       most_recent = true
     }
@@ -100,7 +103,7 @@ variable "enable_team_workloads" {
 variable "existing_eks_managed_node_groups" {
   description = "Managed Node Group"
   type        = any
-  default     = {
+  default = {
     initial = {
       instance_types = ["t3.small"]
 
@@ -110,6 +113,3 @@ variable "existing_eks_managed_node_groups" {
     }
   }
 }
-
-
-

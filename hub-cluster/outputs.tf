@@ -15,7 +15,7 @@ output "argocd_url" {
 
 output "argocd_admin_password_cmd" {
   description = "Command to get initial argocd admin password"
-  value = "echo Password: $(kubectl get secrets argocd-initial-admin-secret -n argocd --template='{{index .data.password | base64decode}}')"
+  value       = "echo Password: $(kubectl get secrets argocd-initial-admin-secret -n argocd --template='{{index .data.password | base64decode}}')"
 }
 output "grafana_url" {
   description = "AWS Managed Grafana Workspace  URL"

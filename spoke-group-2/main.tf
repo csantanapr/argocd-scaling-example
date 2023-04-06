@@ -3,7 +3,7 @@
 ################################################################################
 
 locals {
-  region           = "eu-west-2"
+  region = "eu-west-2"
 }
 
 module "spoke_cluster_1" {
@@ -11,9 +11,9 @@ module "spoke_cluster_1" {
 
   spoke_cluster_name = "cluster-${local.region}-1"
 
-  region                                  = local.region
-  existing_vpc_id                         = module.vpc.vpc_id
-  existing_vpc_private_subnets            = module.vpc.private_subnets
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
 }
 
 module "spoke_cluster_2" {
@@ -21,9 +21,9 @@ module "spoke_cluster_2" {
 
   spoke_cluster_name = "cluster-${local.region}-2"
 
-  region                                  = local.region
-  existing_vpc_id                         = module.vpc.vpc_id
-  existing_vpc_private_subnets            = module.vpc.private_subnets
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
 }
 
 module "spoke_cluster_10" {
@@ -31,9 +31,9 @@ module "spoke_cluster_10" {
 
   spoke_cluster_name = "cluster-${local.region}-10"
 
-  region                                  = local.region
-  existing_vpc_id                         = module.vpc.vpc_id
-  existing_vpc_private_subnets            = module.vpc.private_subnets
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
 }
 
 
@@ -48,9 +48,9 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name                                    = "kubecon-spoke"
-  vpc_cidr                                = "10.0.0.0/16"
-  azs                                     = slice(data.aws_availability_zones.available.names, 0, 3)
+  name     = "kubecon-spoke"
+  vpc_cidr = "10.0.0.0/16"
+  azs      = slice(data.aws_availability_zones.available.names, 0, 3)
 
   tags = {
     Blueprint  = local.name

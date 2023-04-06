@@ -1,5 +1,5 @@
 provider "aws" {
-  region  = var.region
+  region = var.region
 }
 
 provider "kubernetes" {
@@ -247,7 +247,7 @@ module "eks_blueprints_argocd_addons" {
 module "eks_blueprints_argocd_workloads" {
   source = "github.com/aws-ia/terraform-aws-eks-blueprints-addons//modules/argocd?ref=3e64d809ac9dbc89aee872fe0f366f0b757d3137" # TODO: Last update to hash 04=3/31/2023
 
-  count = try(var.enable_workloads,true) ? 1 : 0
+  count = try(var.enable_workloads, true) ? 1 : 0
 
   argocd_skip_install = true # Skip argocd controller install
   helm_config = {
@@ -255,7 +255,7 @@ module "eks_blueprints_argocd_workloads" {
     create_namespace = false
   }
 
-  applications = try(var.workloads,{
+  applications = try(var.workloads, {
     # This shows how to deploy an application to leverage cluster generator  https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Cluster/
     application-set = {
       add_on_application = false

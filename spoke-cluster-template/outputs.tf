@@ -5,5 +5,5 @@ output "configure_kubectl" {
 
 output "cluster_endpoint" {
   description = "Cluster kube-api server endpoint url"
-  value = module.eks.cluster_endpoint
+  value       = module.eks.cluster_endpoint
 }
