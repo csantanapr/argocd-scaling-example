@@ -52,7 +52,7 @@ locals {
 
   cluster_version = "1.24"
 
-  instance_type = "m5.large"
+  instance_type = "r6a.2xlarge"
 
   vpc_cidr  = "10.0.0.0/16"
   azs_count = 3
@@ -152,9 +152,9 @@ module "eks" {
     initial = {
       instance_types = [local.instance_type]
 
-      min_size     = 3
-      max_size     = 10
-      desired_size = 5
+      min_size     = 2
+      max_size     = 3
+      desired_size = 2
     }
   }
 

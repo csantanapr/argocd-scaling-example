@@ -31,9 +31,17 @@ variable "hub_region" {
   default     = "us-west-2"
 }
 
+variable "cluster_version" {
+  description = "Cluster Version"
+  type        = string
+  default     = "1.24"
+}
 
 variable create_vpc {}
 variable existing_vpc_id {}
 variable existing_vpc_private_subnets {}
 variable enable_existing_eks_managed_node_groups {}
 variable existing_eks_managed_node_groups {}
+variable enable_workloads {}
+variable enable_team_workloads {}
+variable cluster_addons {}
