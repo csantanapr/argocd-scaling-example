@@ -4,9 +4,9 @@
 #---------------------------------------------------------------
 
 locals {
-  region                                  = "eu-west-2"
-  cluster_version                         = "1.24"
-  hub_cluster_name                        = "kubecon"
+  region           = "eu-west-2"
+  cluster_version  = "1.24"
+  hub_cluster_name = "kubecon"
   existing_eks_managed_node_groups = {
     initial = {
       instance_types = ["t3.small"]
