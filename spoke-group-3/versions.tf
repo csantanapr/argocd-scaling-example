@@ -7,7 +7,7 @@ terraform {
       version = ">= 4.47"
     }
   }
-  # ##  Used for end-to-end testing on project; update to suit your needs
+  ##  Used for end-to-end testing on project; update to suit your needs
   backend "s3" {
     region = "us-east-1"
     bucket = "csantanapr-terraform-states"
