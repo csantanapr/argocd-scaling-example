@@ -87,7 +87,7 @@ locals {
   keycloak_subdomain               = "keycloak"
   keycloak_admin_password_key_name = "keycloak"
   keycloak_admin_username          = "admin"
-  keycloak_ingress_ready           = "300s"
+  keycloak_ingress_ready           = "480s"
   enable_amg                       = local.enable_keycloak
 
 }
