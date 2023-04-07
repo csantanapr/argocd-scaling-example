@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CLUSTERS=3
+CLUSTERS=10
 COUNTER=0
 for CLUSTER in $(seq $CLUSTERS)
 do

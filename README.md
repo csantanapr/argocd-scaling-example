@@ -112,6 +112,14 @@ terraform apply -auto-approve
 cd ..
 ```
 
+## Deploy Spoke Cluster 3 group (us-east-2) Ohio
+```shell
+cd spoke-group-3
+terraform init
+terraform apply -auto-approve
+cd ..
+```
+
 ## Validate
 
 ### Access ArgoCD
@@ -214,6 +222,13 @@ cd ..
 ### Destroy Spoke Cluster 2 group (eu-west-2) London
 ```shell
 cd spoke-group-2
+./destroy.sh
+cd ..
+```
+
+## Destroy Spoke Cluster 3 group (us-east-2) Ohio
+```shell
+cd spoke-group-3
 ./destroy.sh
 cd ..
 ```
