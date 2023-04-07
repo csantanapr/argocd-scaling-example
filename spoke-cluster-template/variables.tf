@@ -7,7 +7,7 @@ variable "hub_region" {
 variable "hub_cluster_name" {
   description = "Hub Cluster Name"
   type        = string
-  default     = "kubecon"
+  default     = "kubecon-hub"
 }
 
 variable "region" {

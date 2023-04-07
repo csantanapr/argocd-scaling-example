@@ -50,9 +50,7 @@ data "aws_availability_zones" "available" {}
 locals {
   name = var.hub_cluster_name
 
-  cluster_version = "1.24"
-
-  instance_type = "r6a.2xlarge"
+  instance_type = "r6a.2xlarge" # Memory optimized 64GB RAM, 2vCPU, x86_64
 
   vpc_cidr  = "10.0.0.0/16"
   azs_count = 3
@@ -126,7 +124,7 @@ module "eks" {
   version = "~> 19.10"
 
   cluster_name                   = local.name
-  cluster_version                = local.cluster_version
+  cluster_version                = var.cluster_version
   cluster_endpoint_public_access = true
 
   cluster_addons = {

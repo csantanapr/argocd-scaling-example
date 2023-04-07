@@ -1,9 +1,9 @@
 ################################################################################
-# Spoke Clusters Group 2
+# Spoke Clusters Group
 ################################################################################
 
 locals {
-  region = "eu-west-2"
+  region = var.region
 }
 
 module "spoke_cluster_1" {
@@ -20,6 +20,76 @@ module "spoke_cluster_2" {
   source = "../spoke-cluster-template"
 
   spoke_cluster_name = "cluster-${local.region}-2"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_3" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-3"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_4" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-4"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_5" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-5"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_6" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-6"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_7" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-7"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_8" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-8"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_9" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-9"
 
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
