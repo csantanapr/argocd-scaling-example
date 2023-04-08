@@ -82,6 +82,11 @@ variable "workloads" {
       path               = "apps/application-sets"
       repo_url           = "https://github.com/csantanapr/argocd-scaling-example.git"
     }
+    stress-apps = {
+      add_on_application = false
+      path               = "apps/application-sets/app"
+      repo_url           = "https://github.com/csantanapr/argocd-scaling-example.git"
+    }
 
   }
 }
