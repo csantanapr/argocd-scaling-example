@@ -8,7 +8,7 @@ controller:
   serviceAccount:
     annotations:
       eks.amazonaws.com/role-arn: ${irsa_iam_role_arn}
-  replicas: 1 # Additional replicas will cause sharding of managed clusters across number of replicas.
+  replicas: 10 # Additional replicas will cause sharding of managed clusters across number of replicas.
   metrics:
     enabled: true
     service:
@@ -22,6 +22,8 @@ repoServer:
   autoscaling:
     enabled: true
     minReplicas: 2
+    targetMemoryUtilizationPercentage: 80
+    targetCPUUtilizationPercentage: 90
   resources: # Adjust based on your specific use case (required for HPA)
     requests:
       cpu : "100m"
@@ -50,13 +52,15 @@ server:
   autoscaling:
     enabled: true
     minReplicas: 2
+    targetMemoryUtilizationPercentage: 80
+    targetCPUUtilizationPercentage: 90
   resources: # Adjust based on your specific use case (required for HPA)
     requests:
       cpu : "100m"
       memory : "256Mi"
     limits:
-      cpu: "200m"
-      memory: "512Mi"
+      cpu: "1000m"
+      memory: "2048Mi"
   metrics:
     enabled: true
     service:
@@ -87,6 +91,7 @@ configs:
   params:
     application.namespaces: "cluster-*"
   cm:
+    timeout.reconciliation: "360s"
     application.resourceTrackingMethod: "annotation" #use annotation for tracking required for Crossplane
     resource.exclusions: |
       - kinds:
