@@ -17,8 +17,6 @@ spec:
       finalizers:
       - resources-finalizer.argocd.argoproj.io
     spec:
-      # TODOD why annotations not working
-      #project: {{"'{{metadata.annotations.project}}'"}}
       project: default
       source:
         repoURL: {{ .Values.spec.source.repoURL }}
