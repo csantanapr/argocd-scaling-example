@@ -28,6 +28,7 @@ spec:
               project: {{"'{{name}}'"}}
               destination:
                 server: {{"'{{server}}'"}}
+          {{- toYaml $.Values.spec.source.helm | nindent 10 }}
       destination:
         server: https://kubernetes.default.svc
         namespace: {{"'{{name}}'"}}
