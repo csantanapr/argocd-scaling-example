@@ -1,5 +1,3 @@
-argoNamespace: ''
-
 spec:
   project: tbd
   source:
