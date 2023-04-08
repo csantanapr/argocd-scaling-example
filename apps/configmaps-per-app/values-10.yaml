@@ -1,0 +1,14 @@
+enable_1KB: true
+enable_2KB: false
+enable_256KB: false
+items:
+- configmap-1
+- configmap-2
+- configmap-3
+- configmap-4
+- configmap-5
+- configmap-6
+- configmap-7
+- configmap-8
+- configmap-9
+- configmap-10

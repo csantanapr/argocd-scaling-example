@@ -84,7 +84,7 @@ variable "workloads" {
     }
     stress-apps = {
       add_on_application = false
-      path               = "apps/application-sets/app"
+      path               = "apps/application-sets/stress-test"
       repo_url           = "https://github.com/csantanapr/argocd-scaling-example.git"
     }
 

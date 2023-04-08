@@ -3,10 +3,10 @@ argoNamespace: ''
 spec:
   source:
     repoURL: https://github.com/csantanapr/argocd-scaling-example.git
-    path: apps/apps
+    path: apps/apps-per-cluster
     targetRevision: main
     helm:
-      valueFiles:
+      valueFiles: # Select number of ArgoCD Applications per Cluster
       #- values.yaml
       #- values-10.yaml
       #- values-100.yaml

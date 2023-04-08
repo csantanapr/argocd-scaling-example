@@ -4,12 +4,12 @@ spec:
   project: tbd
   source:
     repoURL: https://github.com/csantanapr/argocd-scaling-example.git
-    path: apps/configmap
+    path: apps/configmaps-per-app
     targetRevision: main
     helm:
-      valueFiles:
-      #- values.yaml
-      - values-10.yaml
+      valueFiles: # Select number of Configmaps per ArgoCD Application
+      - values.yaml
+      #- values-10.yaml
       #- values-100.yaml
       #- values-1000.yaml
       #- values-10000.yaml
