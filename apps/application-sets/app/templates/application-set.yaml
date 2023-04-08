@@ -14,7 +14,9 @@ spec:
       finalizers:
       - resources-finalizer.argocd.argoproj.io
     spec:
-      project: {{"'{{.metadata.annotations.project}}'"}}
+      # TODOD why annotations not working
+      #project: {{"'{{metadata.annotations.project}}'"}}
+      project: argocd
       source:
         repoURL: {{ .Values.spec.source.repoURL }}
         # The cluster values field for each generator will be substituted here:
