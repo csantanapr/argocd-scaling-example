@@ -17,7 +17,9 @@ spec:
     targetRevision: {{ $.Values.spec.source.targetRevision }}
     path: {{ $.Values.spec.source.path }}
     helm:
-    {{- toYaml $.Values.spec.source.helm | nindent 6 }}
+      values: |
+        name_prefix: {{ . }}
+      {{- toYaml $.Values.spec.source.helm | nindent 6 }}
   destination:
     server: {{ $.Values.spec.destination.server }}
     namespace: {{ $.Values.spec.destination.namespace | default "default" }}

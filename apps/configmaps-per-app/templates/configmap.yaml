@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ . }}
+  name: {{ $.Values.name_prefix }}{{ . }}
   labels:
     testing.argocd.argoproj.io/type: "stress"
 data:
