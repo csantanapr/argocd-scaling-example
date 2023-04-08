@@ -23,10 +23,14 @@ spec:
         targetRevision: {{ .Values.spec.source.targetRevision }}
         path: {{ .Values.spec.source.path }}
         helm:
-        {{- toYaml .Values.spec.source.helm | nindent 10 }}
+          values: |
+            spec:
+              project: {{"'{{name}}'"}}
+              destination:
+                server: {{"'{{server}}'"}}
       destination:
-        server: {{"'{{server}}'"}}
-        namespace: {{ .Values.spec.destination.namespace | default "default" }}
+        server: https://kubernetes.default.svc
+        namespace: {{"'{{name}}'"}}
       syncPolicy:
         automated:
           prune: true
