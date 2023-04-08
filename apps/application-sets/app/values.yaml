@@ -7,7 +7,11 @@ spec:
     targetRevision: main
     helm:
       valueFiles:
+      #- values.yaml
       - values-10.yaml
+      #- values-100.yaml
+      #- values-1000.yaml
+      #- values-10000.yaml
   destination:
     namespace: default
 
