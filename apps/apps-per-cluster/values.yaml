@@ -7,6 +7,7 @@ spec:
     helm:
       valueFiles: # Select number of Configmaps per ArgoCD Application
       - values.yaml
+      #- values-0.yaml
       #- values-10.yaml
       #- values-50.yaml
       #- values-100.yaml
