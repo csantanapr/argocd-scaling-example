@@ -7,27 +7,10 @@ metadata:
     {{- toYaml .Values.labels | nindent 4 }}
 spec:
   generators:
-  - clusters:
-      selector:
-        matchLabels:
-          environment: 'dev'
-      values:
-        replicas: "1"
-  - clusters:
-      selector:
-        matchLabels:
-          environment: 'test'
-      values:
-        replicas: "2"
-  - clusters:
-      selector:
-        matchLabels:
-          environment: 'prod'
-      values:
-        replicas: "3"
+  - clusters: {} # Automatically use all clusters defined within Argo CD
   template:
     metadata:
-      name: {{"'{{name}}-guestbook'"}}
+      name: {{"'{{name}}-app'"}}
       finalizers:
       - resources-finalizer.argocd.argoproj.io
     spec:
@@ -36,14 +19,12 @@ spec:
         repoURL: {{ .Values.spec.source.repoURL }}
         # The cluster values field for each generator will be substituted here:
         targetRevision: {{ .Values.spec.source.targetRevision }}
-        path: helm-guestbook
+        path: {{ .Values.spec.source.path }}
         helm:
-          parameters:
-          - name: "replicaCount"
-            value: {{"'{{values.replicas}}'"}}
+        {{- toYaml .Values.spec.source.helm | nindent 10 }}
       destination:
         server: {{"'{{server}}'"}}
-        namespace: guestbook
+        namespace: {{ .Values.spec.destination.namespace | default "default" }}
       syncPolicy:
         automated:
           prune: true

@@ -1,0 +1,11 @@
+{{- range .Values.items }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ . }}
+data:
+  {{ if eq $.Values.enable_1KB true }}randomstring_1KB: {{ $.Values.randomstring_1KB }}{{ end }}{{ if eq $.Values.enable_2KB true }}randomstring_2KB: {{ $.Values.randomstring_2KB }}{{ end }}{{ if eq $.Values.enable_256KB true }}randomstring_256KB: {{ $.Values.randomstring_256KB }}{{ end }}
+---
+{{- end }}
+
+

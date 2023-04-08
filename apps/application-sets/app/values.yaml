@@ -1,0 +1,17 @@
+argoNamespace: ''
+
+spec:
+  source:
+    repoURL: https://github.com/csantanapr/argocd-scaling-example.git
+    path: apps/configmap
+    targetRevision: main
+    helm:
+        values: |-
+          enable_1KB: true
+          enable_2KB: false
+          enable_256KB: false
+  destination:
+    namespace: default
+
+labels:
+  cloud: aws
