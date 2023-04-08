@@ -7,7 +7,7 @@ spec:
     targetRevision: main
     helm:
       valueFiles:
-      - values.yaml
+      - values-10.yaml
   destination:
     namespace: default
 
