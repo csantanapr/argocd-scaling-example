@@ -18,11 +18,10 @@ spec:
     path: {{ $.Values.spec.source.path }}
     helm:
       values: |
-        name_prefix: {{ . }}
       {{- toYaml $.Values.spec.source.helm | nindent 6 }}
   destination:
     server: {{ $.Values.spec.destination.server }}
-    namespace: {{ $.Values.spec.destination.namespace | default "default" }}
+    namespace: {{ . }}
   syncPolicy:
     automated:
       prune: true
