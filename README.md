@@ -120,6 +120,14 @@ terraform apply -auto-approve
 cd ..
 ```
 
+## Deploy Spoke Cluster 4 group (eu-west-3) Paris
+```shell
+cd spoke-group-4
+terraform init
+terraform apply -auto-approve
+cd ..
+```
+
 ## Validate
 
 ### Access ArgoCD
@@ -232,6 +240,14 @@ cd spoke-group-3
 ./destroy.sh
 cd ..
 ```
+
+## Destroy Spoke Cluster 4 group (eu-west-3) Paris
+```shell
+cd spoke-group-4
+./destroy.sh
+cd ..
+```
+
 
 ### Destroy Hub Cluster
 ```shell

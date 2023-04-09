@@ -14,7 +14,7 @@ spec:
           argocd.argoproj.io/secret-type: cluster
   template:
     metadata:
-      name: {{"'{{name}}-app'"}}
+      name: {{"'{{name}}-stress'"}}
       finalizers:
       - resources-finalizer.argocd.argoproj.io
     spec:
@@ -33,7 +33,7 @@ spec:
           {{- toYaml $.Values.spec.source.helm | nindent 10 }}
       destination:
         server: https://kubernetes.default.svc
-        namespace: {{"'{{name}}'"}}
+        namespace: "argocd"
       syncPolicy:
         automated:
           prune: true

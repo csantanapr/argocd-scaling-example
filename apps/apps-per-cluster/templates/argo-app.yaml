@@ -2,13 +2,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ . }}
+  name: {{ $.Values.spec.project }}-{{ . }}
   labels:
     testing.argocd.argoproj.io/type: "stress"
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
-  # TODOD why annotations not working
+  # TODO: Why annotations from cluster secret not working?
   #project: {{"'{{metadata.annotations.project}}'"}}
   project: {{ $.Values.spec.project }}
   source:
