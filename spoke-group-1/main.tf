@@ -106,6 +106,157 @@ module "spoke_cluster_10" {
   existing_vpc_private_subnets = module.vpc.private_subnets
 }
 
+module "spoke_cluster_11" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-11"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_12" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-12"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_13" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-13"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_14" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-14"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_15" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-15"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_16" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-16"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_17" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-17"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_18" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-18"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_19" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-19"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_20" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-20"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+
+module "spoke_cluster_21" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-21"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_22" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-22"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_23" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-23"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_24" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-24"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
+module "spoke_cluster_25" {
+  source = "../spoke-cluster-template"
+
+  spoke_cluster_name = "cluster-${local.region}-25"
+
+  region                       = local.region
+  existing_vpc_id              = module.vpc.vpc_id
+  existing_vpc_private_subnets = module.vpc.private_subnets
+}
+
 
 ################################################################################
 # Supporting Resources
@@ -127,6 +278,8 @@ locals {
     GithubRepo = "github.com/csantanapr/argocd-scaling-example"
   }
 }
+
+
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
