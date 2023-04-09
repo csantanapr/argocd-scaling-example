@@ -10,7 +10,22 @@ output "spoke_kubeconfig" {
     module.spoke_cluster_7.configure_kubectl,
     module.spoke_cluster_8.configure_kubectl,
     module.spoke_cluster_9.configure_kubectl,
-    module.spoke_cluster_10.configure_kubectl
+    module.spoke_cluster_10.configure_kubectl,
+    module.spoke_cluster_11.configure_kubectl,
+    module.spoke_cluster_12.configure_kubectl,
+    module.spoke_cluster_13.configure_kubectl,
+    module.spoke_cluster_14.configure_kubectl,
+    module.spoke_cluster_15.configure_kubectl,
+    module.spoke_cluster_16.configure_kubectl,
+    module.spoke_cluster_17.configure_kubectl,
+    module.spoke_cluster_18.configure_kubectl,
+    module.spoke_cluster_19.configure_kubectl,
+    module.spoke_cluster_20.configure_kubectl,
+    module.spoke_cluster_21.configure_kubectl,
+    module.spoke_cluster_22.configure_kubectl,
+    module.spoke_cluster_23.configure_kubectl,
+    module.spoke_cluster_24.configure_kubectl,
+    module.spoke_cluster_25.configure_kubectl,
   ]
 }
 
@@ -26,6 +41,21 @@ output "spoke_cluster_endpoint" {
     module.spoke_cluster_7.cluster_endpoint,
     module.spoke_cluster_8.cluster_endpoint,
     module.spoke_cluster_9.cluster_endpoint,
-    module.spoke_cluster_10.cluster_endpoint
+    module.spoke_cluster_10.cluster_endpoint,
+    module.spoke_cluster_11.cluster_endpoint,
+    module.spoke_cluster_12.cluster_endpoint,
+    module.spoke_cluster_13.cluster_endpoint,
+    module.spoke_cluster_14.cluster_endpoint,
+    module.spoke_cluster_15.cluster_endpoint,
+    module.spoke_cluster_16.cluster_endpoint,
+    module.spoke_cluster_17.cluster_endpoint,
+    module.spoke_cluster_18.cluster_endpoint,
+    module.spoke_cluster_19.cluster_endpoint,
+    module.spoke_cluster_20.cluster_endpoint,
+    module.spoke_cluster_21.cluster_endpoint,
+    module.spoke_cluster_22.cluster_endpoint,
+    module.spoke_cluster_23.cluster_endpoint,
+    module.spoke_cluster_24.cluster_endpoint,
+    module.spoke_cluster_25.cluster_endpoint
   ]
 }
