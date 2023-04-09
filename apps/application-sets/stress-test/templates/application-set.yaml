@@ -10,6 +10,7 @@ spec:
   - clusters:
       selector:
         matchLabels:
+          environment: 'dev'
           argocd.argoproj.io/secret-type: cluster
   template:
     metadata:

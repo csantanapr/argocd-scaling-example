@@ -114,6 +114,7 @@ module "spoke_cluster_11" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_12" {
@@ -124,6 +125,7 @@ module "spoke_cluster_12" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_13" {
@@ -134,6 +136,7 @@ module "spoke_cluster_13" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_14" {
@@ -144,6 +147,7 @@ module "spoke_cluster_14" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_15" {
@@ -154,6 +158,7 @@ module "spoke_cluster_15" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_16" {
@@ -164,6 +169,7 @@ module "spoke_cluster_16" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_17" {
@@ -174,6 +180,7 @@ module "spoke_cluster_17" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_18" {
@@ -184,6 +191,7 @@ module "spoke_cluster_18" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_19" {
@@ -194,6 +202,7 @@ module "spoke_cluster_19" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_20" {
@@ -204,6 +213,7 @@ module "spoke_cluster_20" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 
@@ -215,6 +225,7 @@ module "spoke_cluster_21" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_22" {
@@ -225,6 +236,7 @@ module "spoke_cluster_22" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_23" {
@@ -235,6 +247,7 @@ module "spoke_cluster_23" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_24" {
@@ -245,6 +258,7 @@ module "spoke_cluster_24" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 module "spoke_cluster_25" {
@@ -255,6 +269,7 @@ module "spoke_cluster_25" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  environment                  = "prod"
 }
 
 
