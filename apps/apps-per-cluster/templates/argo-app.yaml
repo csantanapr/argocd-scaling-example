@@ -17,7 +17,6 @@ spec:
     targetRevision: {{ $.Values.spec.source.targetRevision }}
     path: {{ $.Values.spec.source.path }}
     helm:
-      values: |
       {{- toYaml $.Values.spec.source.helm | nindent 6 }}
   destination:
     server: {{ $.Values.spec.destination.server }}
