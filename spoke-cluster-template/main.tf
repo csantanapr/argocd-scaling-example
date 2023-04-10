@@ -110,28 +110,6 @@ locals {
 }
 
 ################################################################################
-# EBS CSI Driver Role
-################################################################################
-
-module "ebs_csi_driver_irsa" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "~> 5.14"
-
-  role_name = "${local.name}-ebs-csi-driver"
-
-  attach_ebs_csi_policy = true
-
-  oidc_providers = {
-    main = {
-      provider_arn               = module.eks.oidc_provider_arn
-      namespace_service_accounts = ["kube-system:ebs-csi-controller-sa"]
-    }
-  }
-
-  tags = local.tags
-}
-
-################################################################################
 # Cluster
 ################################################################################
 
@@ -143,12 +121,9 @@ module "eks" {
   cluster_name                   = local.name
   cluster_version                = var.cluster_version
   cluster_endpoint_public_access = true
+  enable_irsa                    = var.eks_enable_irsa
 
   cluster_addons = try(var.cluster_addons, {
-    aws-ebs-csi-driver = {
-      service_account_role_arn = module.ebs_csi_driver_irsa.iam_role_arn
-      most_recent              = true
-    }
     coredns = {
       most_recent = true
     }
@@ -474,6 +449,7 @@ module "admin_team" {
   cluster_arn  = module.eks.cluster_arn
 
   tags = local.tags
+  depends_on = [module.eks_blueprints_argocd_addons]
 }
 
 module "app_teams" {
@@ -485,11 +461,12 @@ module "app_teams" {
     nodejs   = {}
   }
   name = "app-team-${each.key}"
+  create_iam_role = false
 
 
-  users             = [data.aws_caller_identity.current.arn]
-  cluster_arn       = module.eks.cluster_arn
-  oidc_provider_arn = module.eks.oidc_provider_arn
+  users        = [data.aws_caller_identity.current.arn]
+  cluster_arn  = module.eks.cluster_arn
+
 
   namespaces = {
 
@@ -539,6 +516,7 @@ module "app_teams" {
 
 
   tags = local.tags
+  depends_on = [module.eks_blueprints_argocd_addons]
 }
 
 

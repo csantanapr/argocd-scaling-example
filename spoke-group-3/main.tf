@@ -14,6 +14,7 @@ module "spoke_cluster_1" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_2" {
@@ -24,6 +25,7 @@ module "spoke_cluster_2" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_3" {
@@ -34,6 +36,7 @@ module "spoke_cluster_3" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_4" {
@@ -44,6 +47,7 @@ module "spoke_cluster_4" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_5" {
@@ -54,6 +58,7 @@ module "spoke_cluster_5" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_6" {
@@ -64,6 +69,7 @@ module "spoke_cluster_6" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_7" {
@@ -74,6 +80,7 @@ module "spoke_cluster_7" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_8" {
@@ -84,6 +91,7 @@ module "spoke_cluster_8" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_9" {
@@ -94,6 +102,7 @@ module "spoke_cluster_9" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_10" {
@@ -104,6 +113,7 @@ module "spoke_cluster_10" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_11" {
@@ -114,6 +124,7 @@ module "spoke_cluster_11" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_12" {
@@ -124,6 +135,7 @@ module "spoke_cluster_12" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_13" {
@@ -134,6 +146,7 @@ module "spoke_cluster_13" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_14" {
@@ -144,6 +157,7 @@ module "spoke_cluster_14" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_15" {
@@ -154,6 +168,7 @@ module "spoke_cluster_15" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_16" {
@@ -164,6 +179,7 @@ module "spoke_cluster_16" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_17" {
@@ -174,6 +190,7 @@ module "spoke_cluster_17" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_18" {
@@ -184,6 +201,7 @@ module "spoke_cluster_18" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_19" {
@@ -194,6 +212,7 @@ module "spoke_cluster_19" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_20" {
@@ -204,6 +223,7 @@ module "spoke_cluster_20" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 
@@ -215,6 +235,7 @@ module "spoke_cluster_21" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_22" {
@@ -225,6 +246,7 @@ module "spoke_cluster_22" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_23" {
@@ -235,16 +257,18 @@ module "spoke_cluster_23" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_24" {
   source = "../spoke-cluster-template"
 
-  spoke_cluster_name = "cluster-${local.region}-24"
+  spoke_cluster_name = "cluster-${local.region}"
 
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 module "spoke_cluster_25" {
@@ -255,6 +279,7 @@ module "spoke_cluster_25" {
   region                       = local.region
   existing_vpc_id              = module.vpc.vpc_id
   existing_vpc_private_subnets = module.vpc.private_subnets
+  eks_enable_irsa              = false
 }
 
 

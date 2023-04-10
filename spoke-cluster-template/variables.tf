@@ -113,3 +113,10 @@ variable "existing_eks_managed_node_groups" {
     }
   }
 }
+
+
+variable "eks_enable_irsa" {
+  description = "Determines whether to create an OpenID Connect Provider for EKS to enable IRSA"
+  type        = bool
+  default     = true
+}
