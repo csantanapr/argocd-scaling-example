@@ -12,11 +12,11 @@ spec:
       #- values-2.yaml
       #- values-10.yaml
       #- values-50.yaml
-      #- values-100.yaml
+      - values-100.yaml
       #- values-250.yaml
       #- values-375.yaml
       #- values-500.yaml
-      - values-1000.yaml
+      #- values-1000.yaml
       #- values-2000.yaml
       #- values-5000.yaml
       #- values-6000.yaml
