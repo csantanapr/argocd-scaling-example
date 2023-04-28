@@ -22,6 +22,7 @@ repoServer:
   autoscaling:
     enabled: true
     minReplicas: 2
+    maxReplicas: 5
     targetMemoryUtilizationPercentage: 80
     targetCPUUtilizationPercentage: 90
   resources: # Adjust based on your specific use case (required for HPA)
@@ -38,7 +39,7 @@ repoServer:
         prometheus.io/scrape: true
 
 applicationSet:
-  replicaCount: 2 # The controller doesn't scale horizontally, is active-standby replicas
+  replicaCount: 1 # The controller doesn't scale horizontally, is active-standby replicas
   metrics:
     enabled: true
     service:
@@ -52,6 +53,7 @@ server:
   autoscaling:
     enabled: true
     minReplicas: 2
+    maxReplicas: 5
     targetMemoryUtilizationPercentage: 80
     targetCPUUtilizationPercentage: 90
   resources: # Adjust based on your specific use case (required for HPA)
@@ -91,7 +93,7 @@ configs:
   params:
     application.namespaces: "cluster-*"
   cm:
-    timeout.reconciliation: "360s"
+    timeout.reconciliation: "180s"
     application.resourceTrackingMethod: "annotation" #use annotation for tracking required for Crossplane
     resource.exclusions: |
       - kinds:

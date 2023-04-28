@@ -79,7 +79,7 @@
   "gnetId": 14584,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1681063054664,
+  "iteration": 1681612112486,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -216,6 +216,7 @@
     },
     {
       "datasource": {
+        "type": "prometheus",
         "uid": "$datasource"
       },
       "fieldConfig": {
@@ -230,10 +231,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -271,10 +268,13 @@
           "datasource": {
             "uid": "$datasource"
           },
+          "exemplar": true,
           "expr": "count(count by (server) (argocd_cluster_info{namespace=~\"$namespace\"}))",
           "format": "time_series",
           "instant": false,
+          "interval": "",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -1432,7 +1432,7 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 20,
         "x": 0,
         "y": 44
       },
@@ -1501,105 +1501,6 @@
         },
         {
           "format": "short",
-          "logBase": 1,
-          "min": "0",
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "uid": "$datasource"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "links": []
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 44
-      },
-      "hiddenSeries": false,
-      "id": 98,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideZero": false,
-        "max": true,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "8.4.7",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "uid": "$datasource"
-          },
-          "expr": "sum(argocd_kubectl_exec_pending{namespace=~\"$namespace\"}) by (command)",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{command}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Pending kubectl run",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": 0,
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "min": "0",
-          "show": true
-        },
-        {
-          "decimals": 0,
-          "format": "short",
-          "label": "",
           "logBase": 1,
           "min": "0",
           "show": true
@@ -2864,6 +2765,110 @@
       "type": "row"
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 127
+      },
+      "hiddenSeries": false,
+      "id": 117,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sort": "avg",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pluginVersion": "8.4.7",
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$datasource"
+          },
+          "exemplar": true,
+          "expr": "irate(process_cpu_seconds_total{app_kubernetes_io_component=\"server\",namespace=~\"$namespace\"}[5m])",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{namespace}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "CPU Usage Server",
+      "tooltip": {
+        "shared": false,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 1,
+          "format": "none",
+          "logBase": 1,
+          "show": true
+        },
+        {
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
       "datasource": {
         "uid": "$datasource"
       },
@@ -2923,7 +2928,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 127
+        "y": 134
       },
       "id": 61,
       "links": [],
@@ -2971,7 +2976,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 135
+        "y": 142
       },
       "hiddenSeries": false,
       "id": 36,
@@ -3059,7 +3064,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 144
+        "y": 151
       },
       "hiddenSeries": false,
       "id": 38,
@@ -3138,7 +3143,7 @@
         "h": 2,
         "w": 24,
         "x": 0,
-        "y": 153
+        "y": 160
       },
       "id": 54,
       "links": [],
@@ -3214,7 +3219,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 155
+        "y": 162
       },
       "id": 40,
       "links": [],
@@ -3311,7 +3316,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 155
+        "y": 162
       },
       "id": 42,
       "links": [],
@@ -3408,7 +3413,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 164
+        "y": 171
       },
       "id": 44,
       "links": [],
@@ -3504,7 +3509,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 164
+        "y": 171
       },
       "id": 46,
       "links": [],
@@ -3601,7 +3606,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 173
+        "y": 180
       },
       "id": 48,
       "links": [],
@@ -3699,7 +3704,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 173
+        "y": 180
       },
       "id": 49,
       "links": [],
@@ -3796,7 +3801,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 182
+        "y": 189
       },
       "id": 50,
       "links": [],
@@ -3893,7 +3898,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 182
+        "y": 189
       },
       "id": 99,
       "links": [],
@@ -3941,7 +3946,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 191
+        "y": 198
       },
       "id": 110,
       "panels": [],
@@ -4016,7 +4021,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 192
+        "y": 199
       },
       "id": 112,
       "options": {
@@ -4045,9 +4050,108 @@
       ],
       "title": "Requests by result",
       "type": "timeseries"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "uid": "$datasource"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 206
+      },
+      "hiddenSeries": false,
+      "id": 98,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "8.4.7",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "uid": "$datasource"
+          },
+          "expr": "sum(argocd_kubectl_exec_pending{namespace=~\"$namespace\"}) by (command)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{command}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeRegions": [],
+      "title": "Pending kubectl run",
+      "tooltip": {
+        "shared": true,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
     }
   ],
-  "refresh": "",
+  "refresh": "1m",
   "revision": 1,
   "schemaVersion": 35,
   "style": "dark",
@@ -4250,7 +4354,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -4281,6 +4385,6 @@
   "timezone": "",
   "title": "ArgoCD",
   "uid": "Rl5qI-a4x",
-  "version": 4,
+  "version": 31,
   "weekStart": ""
 }
