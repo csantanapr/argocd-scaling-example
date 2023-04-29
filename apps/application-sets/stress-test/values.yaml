@@ -7,13 +7,13 @@ spec:
     targetRevision: main
     helm:
       valueFiles: # Select number of ArgoCD Applications per Cluster
-      #- values-0.yaml
+      - values-0.yaml
       #- values-1.yaml
       #- values-2.yaml
       #- values-10.yaml
       #- values-50.yaml
       #- values-100.yaml
-      - values-250.yaml
+      #- values-250.yaml
       #- values-375.yaml
       #- values-500.yaml
       #- values-1000.yaml
