@@ -31,7 +31,7 @@ variable "cluster_version" {
 variable "environment" {
   description = "Spoke Cluster Environment"
   type        = string
-  default     = "disable"
+  default     = "dev"
 }
 
 variable "addons" {
